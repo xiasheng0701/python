@@ -14,6 +14,6 @@ if [ ! -f "$dlogs" ]; then
 fi
 for i in `ls $L_Path`
 do
-    echo "$i" >> $ulogs
-    rclone move "$i" $Name:$Folder >> $ulogs
+    echo $i >> $ulogs
+    rclone move $i $Name:$Folder >> $ulogs
 done
