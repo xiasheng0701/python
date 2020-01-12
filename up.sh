@@ -8,11 +8,12 @@ Name=$2
 Folder=$3
 ulogs='./u.log'
 ###############################################
+IFS=$'\n'
 if [ ! -f "$dlogs" ]; then
     touch "$ulogs"
 fi
 for i in `ls $L_Path`
 do
-    echo $i >> $ulogs
-    rclone copy $i $Name:$Folder >> $ulogs
+    echo "$i" >> $ulogs
+    rclone move "$i" $Name:$Folder >> $ulogs
 done
