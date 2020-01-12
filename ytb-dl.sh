@@ -22,7 +22,7 @@ Download(){
     do
     {
         cd $DL_PATH
-        youtube-dl -f best  -ciw -v --restrict-filenames -o "$DL_PATH%(title)s.%(ext)s" $url >> d.log 
+        youtube-dl -f best  -ciw -v --restrict-filenames -o "$DL_PATH/%(title)s.%(ext)s" $url >>d.log
     } 
     done
 }
@@ -33,16 +33,18 @@ Upload(){
     while [ $retry -gt 0 ]
     do
     {
-        if [ ! -f "$DL_PATH/*.mp4" ]; then
+        files=$(ls $DL_Path/*.mp4 2> /dev/null | wc -l)
+        if [ "$files" != "0" ] ; then
             ((retry--))
             sleep 1m
             continue
         fi
         retry=10
-        for i in $DL_Path/*.mp4
+        for i in `ls $DL_PATH/*.mp4`
         do
         {
-            echo $i
+            cd $DL_PATH
+            echo $i >> u.log
             rclone move $i $Name:$Folder
         }
         done
