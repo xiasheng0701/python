@@ -10,9 +10,14 @@ Folder='YouTube'
 urls=$@
 # 等待时间
 retry=10
+# 记录已下载ID
+Archive=$DL_PATH/youtube-dl-archive.txt
 ##############################################
 if [ ! -d "$DL_PATH" ]; then
   mkdir "$DL_PATH"
+fi
+if [ ! -f "$Archive" ]; then
+  touch "$Archive"
 fi
 
 
@@ -23,7 +28,7 @@ Download(){
     {
         cd $DL_PATH
         # youtube-dl -f best  -ciw -v -o "$DL_PATH/%(title)s.%(ext)s" $url >>d.log
-        youtube-dl -f best  -ciw -v -o "$DL_PATH/%(title)s.%(ext)s" $url
+        youtube-dl -f best  -ciw -v -o "$DL_PATH/%(title)s.%(ext)s" --download-archive $Archive $url
     } 
     done
 }
