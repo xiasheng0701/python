@@ -1,5 +1,5 @@
-# python
-常用的python脚本
+# script
+常用的script脚本
 1. virmach
 监控virmach的黑色星期五优惠低于十刀自动提示
 2. ip_get
