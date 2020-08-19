@@ -16,11 +16,10 @@ while :
 do
     read -u6
     {
-        curl \
+        curl -o /dev/null $url \
         # -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.75 Safari/537.36' \
         # -H 'Referer: '\
-        # -H 'Host: '\
-        -o /dev/null $url
+        # -H 'Host: '
         echo >&6 # 当进程结束以后，再向FD6中加上一个回车符，即补上了read -u6减去的那个
     } &
 done
