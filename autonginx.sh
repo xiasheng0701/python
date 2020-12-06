@@ -30,7 +30,8 @@ compile(){
     --with-http_ssl_module \
     --with-http_stub_status_module \
     --with-http_realip_module \
-    --with-threads
+    --with-threads \
+    --with-http_sub_module
     # 编译安装
     make && make install
     echo "-------------------安装完成-----------------------------"
